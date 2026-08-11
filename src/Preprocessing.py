@@ -20,14 +20,14 @@ def pre_data(data):
     # numerical_col and pipeline
     num_col=x_train.select_dtypes(include=['float64','int64'])
 
-    num_pip=Pipeline([('impute',Simpleimputer(strategy='median')),
+    num_pip=Pipeline([('impute',SimpleImputer(strategy='median')),
                       ('scale',StandardScaler())
                       ])
 
     # categorical_col and pipeline
-    cat_col=x.train.select_dtypes(include=['object'])
+    cat_col=x_train.select_dtypes(include=['object'])
 
-    cat_pip=Pipeline([('impute',StandardScaler(strategy='most_frequent')),
+    cat_pip=Pipeline([('impute',SimpleImputer(strategy='most_frequent')),
                       ('encode',OneHotEncoder(handle_unknown='ignore'))
                       ])
     # combining numerical and categorical columns
